@@ -11,6 +11,7 @@ import ItemService from "../../../services/ItemService";
 import States from "../../../models/State";
 import { LeafletMouseEvent } from "leaflet";
 import PointService from "../../../services/PointService";
+import Dropzone from "../../../components/Dropzone";
 
 function CreatePoint() {
   const history = useHistory();
@@ -96,6 +97,8 @@ function CreatePoint() {
         <h1>
           Cadastro do <br /> ponto de coleta
         </h1>
+
+        <Dropzone />
 
         <fieldset>
           <legend>
