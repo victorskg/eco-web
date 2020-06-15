@@ -21,6 +21,7 @@ function CreatePoint() {
   const [cities, setCities] = useState<string[]>([]);
   const [selectedCity, setSelectedCity] = useState("0");
   const [selectedState, setSelectedState] = useState("0");
+  const [selectedFile, setSelectedFile] = useState<File>();
   const [selectedItems, setSelectedItems] = useState<number[]>([]);
   const [selectedPosition, setSelectedPosition] = useState<[number, number]>(
     defaultLocation
@@ -69,17 +70,22 @@ function CreatePoint() {
   async function submit(event: FormEvent) {
     event.preventDefault();
 
+    const data = new FormData();
+    const { name, email, whatsapp } = formData;
     const [latitude, longitude] = selectedPosition;
-    const point = {
-      ...formData,
-      uf: selectedState,
-      city: selectedCity,
-      latitude,
-      longitude,
-      items: selectedItems,
-    };
 
-    await PointService.createPoint(point);
+    data.append("name", name);
+    data.append("email", email);
+    data.append("whatsapp", whatsapp);
+    data.append("latitude", String(latitude));
+    data.append("longitude", String(longitude));
+    data.append("city", selectedCity);
+    data.append("uf", selectedState);
+    data.append("items", selectedItems.join(","));
+
+    if (selectedFile) data.append("image", selectedFile);
+
+    await PointService.createPoint(data);
     history.push("/");
   }
 
@@ -98,7 +104,7 @@ function CreatePoint() {
           Cadastro do <br /> ponto de coleta
         </h1>
 
-        <Dropzone />
+        <Dropzone onFileUploaded={setSelectedFile} />
 
         <fieldset>
           <legend>

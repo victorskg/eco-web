@@ -3,13 +3,21 @@ import { useDropzone } from "react-dropzone";
 import "./styles.css";
 import { FiUpload } from "react-icons/fi";
 
-function Dropzone() {
+interface Props {
+  onFileUploaded: (file: File) => void;
+}
+
+const Dropzone: React.FC<Props> = ({ onFileUploaded }) => {
   const [selectedFileURL, setSelectedFileURL] = useState("");
 
-  const onDrop = useCallback((acceptedFiles) => {
-    const file = acceptedFiles[0];
-    setSelectedFileURL(URL.createObjectURL(file));
-  }, []);
+  const onDrop = useCallback(
+    (acceptedFiles) => {
+      const file = acceptedFiles[0];
+      setSelectedFileURL(URL.createObjectURL(file));
+      onFileUploaded(file);
+    },
+    [onFileUploaded]
+  );
 
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
@@ -30,6 +38,6 @@ function Dropzone() {
       )}
     </div>
   );
-}
+};
 
 export default Dropzone;
