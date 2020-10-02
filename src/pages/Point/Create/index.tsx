@@ -1,6 +1,6 @@
 import React, { useEffect, useState, ChangeEvent, FormEvent } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { FiArrowLeft } from "react-icons/fi";
+import { FiArrowLeft, FiList } from "react-icons/fi";
 import { Map, TileLayer, Marker } from "react-leaflet";
 
 import "./styles.css";
@@ -13,7 +13,7 @@ import { LeafletMouseEvent } from "leaflet";
 import PointService from "../../../services/PointService";
 import Dropzone from "../../../components/Dropzone";
 
-function CreatePoint() {
+const CreatePoint = () => {
   const history = useHistory();
   const defaultLocation: [number, number] = [0, 0];
   const [items, setItems] = useState<Item[]>([]);
@@ -93,7 +93,7 @@ function CreatePoint() {
     <div id="page-create-point">
       <header>
         <img src={logo} alt="Ecoleta" />
-        <Link to="/">
+        <Link to="/" className="link">
           <FiArrowLeft />
           Voltar para home
         </Link>
@@ -216,11 +216,16 @@ function CreatePoint() {
             ))}
           </ul>
         </fieldset>
-
-        <button type="submit">Cadastrar ponto de coleta</button>
+        <div className="formActions">
+          <Link to="/pontos" className="link">
+            <FiList />
+            Lista de pontos
+          </Link>
+          <button type="submit">Cadastrar ponto de coleta</button>
+        </div>
       </form>
     </div>
   );
-}
+};
 
 export default CreatePoint;

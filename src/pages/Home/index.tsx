@@ -4,7 +4,7 @@ import { FiLogIn } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo.svg";
 
-function Home() {
+const Home = () => {
   return (
     <div id="page-home">
       <div className="content">
@@ -26,6 +26,6 @@ function Home() {
       </div>
     </div>
   );
-}
+};
 
 export default Home;
