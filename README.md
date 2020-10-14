@@ -9,7 +9,7 @@ This repository is my first contact with Reacr on the front end, i have always w
 ## :computer: Final Result
 
 <p align="center">
-    <img src="https://github.com/victorskg/eco-web/blob/master/src/.github/homepage.png">
+    <img src=".github/homepage.png">
 </p>
 
 # :pushpin: Contents
@@ -24,7 +24,7 @@ This repository is my first contact with Reacr on the front end, i have always w
 The web app provides a home and a create point page.
 
 <p align="center">
-    <img src="https://github.com/victorskg/eco-web/blob/master/src/.github/demo.gif">
+    <img src=".github/demo.gif">
 </p>
 
 # :runner: Getting Started
